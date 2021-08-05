@@ -25,7 +25,9 @@
   "keywords": [
     "capacitor",
     "plugin",
-    "native"
+    "native",
+    "nitgen",
+    "fingerprint"
   ],
   "scripts": {
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
@@ -52,8 +54,11 @@
     "@ionic/prettier-config": "^1.0.1",
     "@ionic/swiftlint-config": "^1.1.2",
     "eslint": "^7.11.0",
+    "husky": "^7.0.1",
+    "np": "^7.5.0",
     "prettier": "~2.2.0",
     "prettier-plugin-java": "~1.0.0",
+    "pretty-quick": "^3.1.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.32.0",
     "swiftlint": "^1.0.1",
@@ -66,6 +71,11 @@
   "swiftlint": "@ionic/swiftlint-config",
   "eslintConfig": {
     "extends": "@ionic/eslint-config/recommended"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "capacitor": {
     "ios": {
