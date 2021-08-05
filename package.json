@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-nitgen-fingerprint",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Capacitor plugin for Nitgen fingerprint devices.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -43,7 +43,8 @@
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release": "np"
   },
   "devDependencies": {
     "@capacitor/android": "^3.0.0",
@@ -76,6 +77,13 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "np": {
+    "yarn": false,
+    "contents": "dist",
+    "branch": "main",
+    "tests": false,
+    "message": "build %s"
   },
   "capacitor": {
     "ios": {
