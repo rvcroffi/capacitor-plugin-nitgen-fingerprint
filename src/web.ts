@@ -1,12 +1,6 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type {
-  CaptureOptions,
-  CaptureResult,
-  FingerprintPlugin,
-  MatchOptions,
-  MatchResult,
-} from './definitions';
+import type { CaptureOptions, CaptureResult, FingerprintPlugin, MatchOptions, MatchResult } from './definitions';
 
 const UNIMPLEMENTED_TEXT = 'Not implemented on web.';
 

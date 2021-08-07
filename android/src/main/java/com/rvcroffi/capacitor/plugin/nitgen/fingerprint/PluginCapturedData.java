@@ -3,10 +3,12 @@ package com.rvcroffi.capacitor.plugin.nitgen.fingerprint;
 import com.nitgen.SDK.AndroidBSP.NBioBSPJNI;
 
 public class PluginCapturedData {
+
     private NBioBSPJNI.FIR_HANDLE hCapturedFIR, hAuditFIR;
     private NBioBSPJNI.CAPTURED_DATA capturedData;
 
-    public PluginCapturedData(){}
+    public PluginCapturedData() {}
+
     public PluginCapturedData(NBioBSPJNI.FIR_HANDLE hCapturedFIR, NBioBSPJNI.FIR_HANDLE hAuditFIR, NBioBSPJNI.CAPTURED_DATA capturedData) {
         this.hCapturedFIR = hCapturedFIR;
         this.hAuditFIR = hAuditFIR;
