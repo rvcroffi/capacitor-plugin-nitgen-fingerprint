@@ -41,6 +41,8 @@ Init the plugin with options
 | ------------- | -------------------------------------------------------------------------------------------------- |
 | **`options`** | <code><a href="#initoptions">InitOptions</a> & <a href="#captureoptions">CaptureOptions</a></code> |
 
+**Since:** 1.0.0
+
 --------------------
 
 
@@ -52,6 +54,8 @@ connect() => Promise<void>
 
 Connect to fingerprint device
 
+**Since:** 1.0.0
+
 --------------------
 
 
@@ -62,6 +66,8 @@ disconnect() => Promise<void>
 ```
 
 Disconnect from fingerprint device
+
+**Since:** 1.0.0
 
 --------------------
 
@@ -80,6 +86,8 @@ Capture a fingerprint
 
 **Returns:** <code>Promise&lt;<a href="#captureresult">CaptureResult</a>&gt;</code>
 
+**Since:** 1.0.0
+
 --------------------
 
 
@@ -97,23 +105,27 @@ Capture a fingerprint and match with a given text FIR
 
 **Returns:** <code>Promise&lt;<a href="#matchresult">MatchResult</a>&gt;</code>
 
+**Since:** 1.0.0
+
 --------------------
 
 
 ### addListener('onConnected', ...)
 
 ```typescript
-addListener(eventName: 'onConnected', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'onConnected', listenerFunc: OnConnectedListener) => Promise<PluginListenerHandle> & PluginListenerHandle
 ```
 
 Listen for connected event
 
-| Param              | Type                       |
-| ------------------ | -------------------------- |
-| **`eventName`**    | <code>'onConnected'</code> |
-| **`listenerFunc`** | <code>() =&gt; void</code> |
+| Param              | Type                                                                |
+| ------------------ | ------------------------------------------------------------------- |
+| **`eventName`**    | <code>'onConnected'</code>                                          |
+| **`listenerFunc`** | <code><a href="#onconnectedlistener">OnConnectedListener</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+**Since:** 1.0.0
 
 --------------------
 
@@ -133,6 +145,8 @@ Listen for disconnected event
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
+**Since:** 1.0.0
+
 --------------------
 
 
@@ -141,43 +155,43 @@ Listen for disconnected event
 
 #### InitOptions
 
-| Prop           | Type                                                    | Description    | Default             |
-| -------------- | ------------------------------------------------------- | -------------- | ------------------- |
-| **`serial`**   | <code>string</code>                                     | Serial code    |                     |
-| **`security`** | <code><a href="#securitylevel">SecurityLevel</a></code> | Security level | <code>NORMAL</code> |
+| Prop           | Type                                                    | Description    | Default             | Since |
+| -------------- | ------------------------------------------------------- | -------------- | ------------------- | ----- |
+| **`serial`**   | <code>string</code>                                     | Serial code    |                     | 1.0.0 |
+| **`security`** | <code><a href="#securitylevel">SecurityLevel</a></code> | Security level | <code>NORMAL</code> | 1.0.0 |
 
 
 #### CaptureOptions
 
-| Prop               | Type                                                | Description                                             | Default            |
-| ------------------ | --------------------------------------------------- | ------------------------------------------------------- | ------------------ |
-| **`timeout`**      | <code>number</code>                                 | Capture timeout in milliseconds                         | <code>10000</code> |
-| **`imageFormat`**  | <code><a href="#imageformat">ImageFormat</a></code> | Fingerprint image format                                | <code>PNG</code>   |
-| **`imageQuality`** | <code>number</code>                                 | Fingerprint image quality (0-100) Only applied for JPEG | <code>50</code>    |
+| Prop               | Type                                                | Description                                             | Default            | Since |
+| ------------------ | --------------------------------------------------- | ------------------------------------------------------- | ------------------ | ----- |
+| **`timeout`**      | <code>number</code>                                 | Capture timeout in milliseconds                         | <code>10000</code> | 1.0.0 |
+| **`imageFormat`**  | <code><a href="#imageformat">ImageFormat</a></code> | Fingerprint image format                                | <code>PNG</code>   | 1.0.0 |
+| **`imageQuality`** | <code>number</code>                                 | Fingerprint image quality (0-100) Only applied for JPEG | <code>50</code>    | 1.0.0 |
 
 
 #### CaptureResult
 
-| Prop          | Type                | Description                      |
-| ------------- | ------------------- | -------------------------------- |
-| **`textFIR`** | <code>string</code> | Captured text FIR                |
-| **`image`**   | <code>string</code> | base64 encoded fingerprint image |
+| Prop          | Type                | Description                      | Since |
+| ------------- | ------------------- | -------------------------------- | ----- |
+| **`textFIR`** | <code>string</code> | Captured text FIR                | 1.0.0 |
+| **`image`**   | <code>string</code> | base64 encoded fingerprint image | 1.0.0 |
 
 
 #### MatchResult
 
-| Prop          | Type                 | Description                              |
-| ------------- | -------------------- | ---------------------------------------- |
-| **`isMatch`** | <code>boolean</code> | If captured fingerprint matched text FIR |
-| **`textFIR`** | <code>string</code>  | Captured text FIR                        |
-| **`image`**   | <code>string</code>  | base64 encoded fingerprint image         |
+| Prop          | Type                 | Description                              | Since |
+| ------------- | -------------------- | ---------------------------------------- | ----- |
+| **`isMatch`** | <code>boolean</code> | If captured fingerprint matched text FIR | 1.0.0 |
+| **`textFIR`** | <code>string</code>  | Captured text FIR                        | 1.0.0 |
+| **`image`**   | <code>string</code>  | base64 encoded fingerprint image         | 1.0.0 |
 
 
 #### MatchOptions
 
-| Prop          | Type                | Description                                          |
-| ------------- | ------------------- | ---------------------------------------------------- |
-| **`textFIR`** | <code>string</code> | A stored text FIR to match with captured fingerprint |
+| Prop          | Type                | Description                                          | Since |
+| ------------- | ------------------- | ---------------------------------------------------- | ----- |
+| **`textFIR`** | <code>string</code> | A stored text FIR to match with captured fingerprint | 1.0.0 |
 
 
 #### PluginListenerHandle
@@ -187,12 +201,24 @@ Listen for disconnected event
 | **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
 
 
+#### OnConnectedListenerEvent
+
+| Prop                 | Type                | Description | Since |
+| -------------------- | ------------------- | ----------- | ----- |
+| **`openedDeviceID`** | <code>number</code> | Device ID   | 1.0.0 |
+
+
 ### Type Aliases
 
 
 #### ImageFormat
 
 <code>'PNG' | 'JPEG'</code>
+
+
+#### OnConnectedListener
+
+<code>(event: <a href="#onconnectedlistenerevent">OnConnectedListenerEvent</a>): void</code>
 
 
 ### Enums
