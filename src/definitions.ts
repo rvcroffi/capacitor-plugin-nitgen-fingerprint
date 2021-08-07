@@ -16,7 +16,7 @@ export interface FingerprintPlugin {
   /**
    * Capture a fingerprint
    */
-  capture(options: CaptureOptions): Promise<CaptureResult>;
+  capture(options?: CaptureOptions): Promise<CaptureResult>;
   /**
    * Capture a fingerprint and match with a given text FIR
    */
@@ -27,14 +27,14 @@ export interface FingerprintPlugin {
    */
   addListener(
     eventName: 'onConnected',
-    listenerFunc: () => void,
+    listenerFunc: () => { openedDeviceID: number }
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
   /**
    * Listen for disconnected event
    */
   addListener(
     eventName: 'onDisconnected',
-    listenerFunc: () => void,
+    listenerFunc: () => void
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
 }
 

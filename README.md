@@ -18,9 +18,10 @@ npx cap sync
 * [`disconnect()`](#disconnect)
 * [`capture(...)`](#capture)
 * [`match(...)`](#match)
-* [`addListener(...)`](#addlistener)
-* [`addListener(...)`](#addlistener)
+* [`addListener('onConnected', ...)`](#addlisteneronconnected-)
+* [`addListener('onDisconnected', ...)`](#addlistenerondisconnected-)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 * [Enums](#enums)
 
 </docgen-index>
@@ -68,7 +69,7 @@ Disconnect from fingerprint device
 ### capture(...)
 
 ```typescript
-capture(options: CaptureOptions) => Promise<CaptureResult>
+capture(options?: CaptureOptions | undefined) => Promise<CaptureResult>
 ```
 
 Capture a fingerprint
@@ -99,7 +100,7 @@ Capture a fingerprint and match with a given text FIR
 --------------------
 
 
-### addListener(...)
+### addListener('onConnected', ...)
 
 ```typescript
 addListener(eventName: 'onConnected', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
@@ -109,7 +110,7 @@ Listen for connected event
 
 | Param              | Type                       |
 | ------------------ | -------------------------- |
-| **`eventName`**    | <code>"onConnected"</code> |
+| **`eventName`**    | <code>'onConnected'</code> |
 | **`listenerFunc`** | <code>() =&gt; void</code> |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
@@ -117,7 +118,7 @@ Listen for connected event
 --------------------
 
 
-### addListener(...)
+### addListener('onDisconnected', ...)
 
 ```typescript
 addListener(eventName: 'onDisconnected', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
@@ -127,7 +128,7 @@ Listen for disconnected event
 
 | Param              | Type                          |
 | ------------------ | ----------------------------- |
-| **`eventName`**    | <code>"onDisconnected"</code> |
+| **`eventName`**    | <code>'onDisconnected'</code> |
 | **`listenerFunc`** | <code>() =&gt; void</code>    |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
@@ -148,11 +149,11 @@ Listen for disconnected event
 
 #### CaptureOptions
 
-| Prop               | Type                         | Description                                             | Default            |
-| ------------------ | ---------------------------- | ------------------------------------------------------- | ------------------ |
-| **`timeout`**      | <code>number</code>          | Capture timeout in milliseconds                         | <code>10000</code> |
-| **`imageFormat`**  | <code>["PNG", "JPEG"]</code> | Fingerprint image format                                | <code>'PNG'</code> |
-| **`imageQuality`** | <code>number</code>          | Fingerprint image quality (0-100) Only applied for JPEG | <code>50</code>    |
+| Prop               | Type                                                | Description                                             | Default            |
+| ------------------ | --------------------------------------------------- | ------------------------------------------------------- | ------------------ |
+| **`timeout`**      | <code>number</code>                                 | Capture timeout in milliseconds                         | <code>10000</code> |
+| **`imageFormat`**  | <code><a href="#imageformat">ImageFormat</a></code> | Fingerprint image format                                | <code>PNG</code>   |
+| **`imageQuality`** | <code>number</code>                                 | Fingerprint image quality (0-100) Only applied for JPEG | <code>50</code>    |
 
 
 #### CaptureResult
@@ -186,6 +187,14 @@ Listen for disconnected event
 | **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
 
 
+### Type Aliases
+
+
+#### ImageFormat
+
+<code>'PNG' | 'JPEG'</code>
+
+
 ### Enums
 
 
@@ -194,13 +203,13 @@ Listen for disconnected event
 | Members            | Value          |
 | ------------------ | -------------- |
 | **`LOWEST`**       | <code>1</code> |
-| **`LOWER`**        |                |
-| **`LOW`**          |                |
-| **`BELOW_NORMAL`** |                |
-| **`NORMAL`**       |                |
-| **`ABOVE_NORMAL`** |                |
-| **`HIGH`**         |                |
-| **`HIGHER`**       |                |
-| **`HIGHEST`**      |                |
+| **`LOWER`**        | <code>2</code> |
+| **`LOW`**          | <code>3</code> |
+| **`BELOW_NORMAL`** | <code>4</code> |
+| **`NORMAL`**       | <code>5</code> |
+| **`ABOVE_NORMAL`** | <code>6</code> |
+| **`HIGH`**         | <code>7</code> |
+| **`HIGHER`**       | <code>8</code> |
+| **`HIGHEST`**      | <code>9</code> |
 
 </docgen-api>

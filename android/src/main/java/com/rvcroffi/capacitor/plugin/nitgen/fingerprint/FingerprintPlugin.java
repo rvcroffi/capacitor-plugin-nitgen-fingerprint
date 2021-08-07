@@ -2,16 +2,13 @@ package com.rvcroffi.capacitor.plugin.nitgen.fingerprint;
 
 import android.graphics.Bitmap;
 import android.os.Build;
-
 import androidx.annotation.RequiresApi;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.nitgen.SDK.AndroidBSP.NBioBSPJNI;
-
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 
@@ -25,7 +22,6 @@ public class FingerprintPlugin extends Plugin {
     private int securityLevel = NBioBSPJNI.FIR_SECURITY_LEVEL.NORMAL;
     private Fingerprint implementation = new Fingerprint();
     private NBioBSPJNI.CAPTURE_CALLBACK mCallback = new NBioBSPJNI.CAPTURE_CALLBACK() {
-
         @Override
         public int OnCaptured(NBioBSPJNI.CAPTURED_DATA capturedData) {
             return 0;
@@ -42,7 +38,7 @@ public class FingerprintPlugin extends Plugin {
         @Override
         public void OnDisConnected() {
             NBioBSPJNI.isConnected = false;
-            notifyListeners("onDisConnected", null);
+            notifyListeners("onDisconnected", null);
         }
     };
 
@@ -56,9 +52,9 @@ public class FingerprintPlugin extends Plugin {
         compressFormat = Bitmap.CompressFormat.valueOf(format);
         imageQuality = call.getInt("imageQuality", imageQuality);
         securityLevel = call.getInt("security", securityLevel);
-        if(bsp == null){
+        if (bsp == null) {
             bsp = new NBioBSPJNI(serial, getContext(), mCallback);
-            if(bsp.IsErrorOccured()){
+            if (bsp.IsErrorOccured()) {
                 rejectNBioBSPError(call);
                 return;
             }
@@ -70,7 +66,7 @@ public class FingerprintPlugin extends Plugin {
         init_info_0.VerifyImageQuality = imageQuality;
         init_info_0.SecurityLevel = securityLevel;
         bsp.SetInitInfo(init_info_0);
-        if(bsp.IsErrorOccured()){
+        if (bsp.IsErrorOccured()) {
             rejectNBioBSPError(call);
             return;
         }
@@ -79,15 +75,15 @@ public class FingerprintPlugin extends Plugin {
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void connect(PluginCall call) {
-        if(bsp != null){
-            if(!NBioBSPJNI.isConnected){
+        if (bsp != null) {
+            if (!NBioBSPJNI.isConnected) {
                 bsp.OpenDevice();
-                if(bsp.IsErrorOccured()){
+                if (bsp.IsErrorOccured()) {
                     rejectNBioBSPError(call);
                     return;
                 }
             }
-        }else{
+        } else {
             rejectUninitializedPlugin(call);
             return;
         }
@@ -96,15 +92,15 @@ public class FingerprintPlugin extends Plugin {
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void disconnect(PluginCall call) {
-        if(bsp != null){
-            if(NBioBSPJNI.isConnected){
+        if (bsp != null) {
+            if (NBioBSPJNI.isConnected) {
                 bsp.releaseDevice();
-                if(bsp.IsErrorOccured()){
+                if (bsp.IsErrorOccured()) {
                     rejectNBioBSPError(call);
                     return;
                 }
             }
-        }else{
+        } else {
             rejectUninitializedPlugin(call);
             return;
         }
@@ -123,7 +119,7 @@ public class FingerprintPlugin extends Plugin {
         textFir = bsp.new FIR_TEXTENCODE();
         PluginCapturedData data = _capture(timeout);
         bsp.GetTextFIRFromHandle(data.gethCapturedFIR(), textFir);
-        if(bsp.IsErrorOccured()){
+        if (bsp.IsErrorOccured()) {
             rejectNBioBSPError(call);
             return;
         }
@@ -135,7 +131,7 @@ public class FingerprintPlugin extends Plugin {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @PluginMethod
-    public void match(PluginCall call){
+    public void match(PluginCall call) {
         JSObject ret = new JSObject();
         String stringFIR = call.getString("textFIR");
         int timeout = call.getInt("timeout", captureTimeout);
@@ -184,11 +180,11 @@ public class FingerprintPlugin extends Plugin {
         return base64;
     }
 
-    private void rejectUninitializedPlugin(PluginCall call){
+    private void rejectUninitializedPlugin(PluginCall call) {
         call.reject("Uninitialized plugin. Call init() first.");
     }
 
-    private void rejectNBioBSPError(PluginCall call){
+    private void rejectNBioBSPError(PluginCall call) {
         call.reject("NBioBSP Error: " + bsp.GetErrorCode());
     }
 }
