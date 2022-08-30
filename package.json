@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-nitgen-fingerprint",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Capacitor plugin for Nitgen fingerprint devices.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
