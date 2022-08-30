@@ -44,8 +44,8 @@
     "release": "np"
   },
   "devDependencies": {
-    "@capacitor/android": "^4.0.1",
-    "@capacitor/core": "^4.0.1",
+    "@capacitor/android": "^3.7.0",
+    "@capacitor/core": "^3.7.0",
     "@capacitor/docgen": "^0.2.0",
     "@ionic/eslint-config": "^0.3.0",
     "@ionic/prettier-config": "^2.0.0",
