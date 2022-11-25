@@ -1,8 +1,6 @@
 package com.rvcroffi.capacitor.plugin.nitgen.fingerprint;
 
 import android.graphics.Bitmap;
-import android.os.Build;
-import androidx.annotation.RequiresApi;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -10,7 +8,7 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.nitgen.SDK.AndroidBSP.NBioBSPJNI;
 import java.io.ByteArrayOutputStream;
-import java.util.Base64;
+import android.util.Base64;
 
 @CapacitorPlugin(name = "Fingerprint")
 public class FingerprintPlugin extends Plugin {
@@ -20,7 +18,7 @@ public class FingerprintPlugin extends Plugin {
     private Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.PNG;
     private int imageQuality = 50;
     private int securityLevel = NBioBSPJNI.FIR_SECURITY_LEVEL.NORMAL;
-    private Fingerprint implementation = new Fingerprint();
+//    private Fingerprint implementation = new Fingerprint();
     private NBioBSPJNI.CAPTURE_CALLBACK mCallback = new NBioBSPJNI.CAPTURE_CALLBACK() {
         @Override
         public int OnCaptured(NBioBSPJNI.CAPTURED_DATA capturedData) {
@@ -48,7 +46,7 @@ public class FingerprintPlugin extends Plugin {
     public void init(PluginCall call) {
         String serial = call.getString("serial");
         captureTimeout = call.getInt("timeout", captureTimeout);
-        String format = call.getString("imageFormat", "PNG");
+        String format = call.getString("imageFormat", compressFormat.name());
         compressFormat = Bitmap.CompressFormat.valueOf(format);
         imageQuality = call.getInt("imageQuality", imageQuality);
         securityLevel = call.getInt("security", securityLevel);
@@ -107,11 +105,10 @@ public class FingerprintPlugin extends Plugin {
         call.resolve();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @PluginMethod
+    @PluginMethod()
     public void capture(PluginCall call) {
         int timeout = call.getInt("timeout", captureTimeout);
-        String format = call.getString("imageFormat", Bitmap.CompressFormat.PNG.name());
+        String format = call.getString("imageFormat", compressFormat.name());
         Bitmap.CompressFormat cFormat = Bitmap.CompressFormat.valueOf(format);
         int quality = call.getInt("imageQuality", imageQuality);
         JSObject ret = new JSObject();
@@ -129,13 +126,12 @@ public class FingerprintPlugin extends Plugin {
         call.resolve(ret);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @PluginMethod
+    @PluginMethod()
     public void match(PluginCall call) {
         JSObject ret = new JSObject();
         String stringFIR = call.getString("textFIR");
         int timeout = call.getInt("timeout", captureTimeout);
-        String format = call.getString("imageFormat", Bitmap.CompressFormat.PNG.name());
+        String format = call.getString("imageFormat", compressFormat.name());
         Bitmap.CompressFormat cFormat = Bitmap.CompressFormat.valueOf(format);
         int quality = call.getInt("imageQuality", imageQuality);
         NBioBSPJNI.FIR_TEXTENCODE textFir = bsp.new FIR_TEXTENCODE();
@@ -171,12 +167,11 @@ public class FingerprintPlugin extends Plugin {
         return data;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private String _getImage(NBioBSPJNI.CAPTURED_DATA capturedData, Bitmap.CompressFormat cFormat, int quality) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         capturedData.getImage().compress(cFormat, quality, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-        String base64 = Base64.getEncoder().encodeToString(byteArray);
+        String base64 = Base64.encodeToString(byteArray, Base64.NO_WRAP);
         return base64;
     }
 
