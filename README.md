@@ -1,6 +1,8 @@
 # capacitor-plugin-nitgen-fingerprint
 
-Capacitor 4 plugin for Nitgen fingerprint devices.
+Capacitor 4 plugin for Nitgen fingerprint readers (Hamster DX and Hamster III).
+
+**ANDROID ONLY**
 
 ## Install
 
