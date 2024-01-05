@@ -1,6 +1,6 @@
 # capacitor-plugin-nitgen-fingerprint
 
-Capacitor 4 plugin for Nitgen fingerprint readers (Hamster DX and Hamster III).
+Capacitor 5 plugin for Nitgen fingerprint readers (Hamster DX and Hamster III).
 
 **ANDROID ONLY**
 
@@ -10,7 +10,9 @@ Capacitor 4 plugin for Nitgen fingerprint readers (Hamster DX and Hamster III).
 npm install capacitor-plugin-nitgen-fingerprint
 npx cap sync
 ```
+
 Update your app AndroidManifest.xml, into activity tag:
+
 ```xml
 <intent-filter>
     <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
