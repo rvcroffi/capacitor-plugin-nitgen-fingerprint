@@ -1,6 +1,7 @@
 package com.rvcroffi.capacitor.plugin.nitgen.fingerprint;
 
 import android.graphics.Bitmap;
+import android.util.Base64;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -8,7 +9,6 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.nitgen.SDK.AndroidBSP.NBioBSPJNI;
 import java.io.ByteArrayOutputStream;
-import android.util.Base64;
 
 @CapacitorPlugin(name = "Fingerprint")
 public class FingerprintPlugin extends Plugin {
@@ -18,7 +18,7 @@ public class FingerprintPlugin extends Plugin {
     private Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.PNG;
     private int imageQuality = 50;
     private int securityLevel = NBioBSPJNI.FIR_SECURITY_LEVEL.NORMAL;
-//    private Fingerprint implementation = new Fingerprint();
+    //    private Fingerprint implementation = new Fingerprint();
     private NBioBSPJNI.CAPTURE_CALLBACK mCallback = new NBioBSPJNI.CAPTURE_CALLBACK() {
         @Override
         public int OnCaptured(NBioBSPJNI.CAPTURED_DATA capturedData) {
@@ -105,7 +105,7 @@ public class FingerprintPlugin extends Plugin {
         call.resolve();
     }
 
-    @PluginMethod()
+    @PluginMethod
     public void capture(PluginCall call) {
         int timeout = call.getInt("timeout", captureTimeout);
         String format = call.getString("imageFormat", compressFormat.name());
@@ -126,7 +126,7 @@ public class FingerprintPlugin extends Plugin {
         call.resolve(ret);
     }
 
-    @PluginMethod()
+    @PluginMethod
     public void match(PluginCall call) {
         JSObject ret = new JSObject();
         String stringFIR = call.getString("textFIR");

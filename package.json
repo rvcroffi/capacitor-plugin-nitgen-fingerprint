@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-nitgen-fingerprint",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Capacitor plugin for Nitgen fingerprint devices.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -64,7 +64,6 @@
   "peerDependencies": {
     "@capacitor/core": "^5.0.0"
   },
-  "prettier": "@ionic/prettier-config",
   "eslintConfig": {
     "extends": "@ionic/eslint-config/recommended"
   },
@@ -78,7 +77,7 @@
     "contents": ".",
     "branch": "main",
     "tests": false,
-    "message": "build %s"
+    "message": "bump to %s"
   },
   "capacitor": {
     "android": {

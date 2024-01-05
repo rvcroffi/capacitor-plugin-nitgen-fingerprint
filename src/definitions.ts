@@ -33,7 +33,7 @@ export interface FingerprintPlugin {
    */
   addListener(
     eventName: 'onConnected',
-    listenerFunc: OnConnectedListener
+    listenerFunc: OnConnectedListener,
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
   /**
    * Listen for disconnected event
@@ -41,7 +41,7 @@ export interface FingerprintPlugin {
    */
   addListener(
     eventName: 'onDisconnected',
-    listenerFunc: () => void
+    listenerFunc: () => void,
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
 }
 
