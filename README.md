@@ -1,6 +1,6 @@
 # capacitor-plugin-nitgen-fingerprint
 
-Capacitor 5 plugin for Nitgen fingerprint readers (Hamster DX and Hamster III).
+Capacitor 6 plugin for Nitgen fingerprint readers (Hamster DX and Hamster III).
 
 **ANDROID ONLY**
 
@@ -26,16 +26,16 @@ Update your app AndroidManifest.xml, into activity tag:
 
 <docgen-index>
 
-* [`init(...)`](#init)
-* [`connect()`](#connect)
-* [`disconnect()`](#disconnect)
-* [`capture(...)`](#capture)
-* [`match(...)`](#match)
-* [`addListener('onConnected', ...)`](#addlisteneronconnected)
-* [`addListener('onDisconnected', ...)`](#addlistenerondisconnected)
-* [Interfaces](#interfaces)
-* [Type Aliases](#type-aliases)
-* [Enums](#enums)
+- [`init(...)`](#init)
+- [`connect()`](#connect)
+- [`disconnect()`](#disconnect)
+- [`capture(...)`](#capture)
+- [`match(...)`](#match)
+- [`addListener('onConnected', ...)`](#addlisteneronconnected-)
+- [`addListener('onDisconnected', ...)`](#addlistenerondisconnected-)
+- [Interfaces](#interfaces)
+- [Type Aliases](#type-aliases)
+- [Enums](#enums)
 
 </docgen-index>
 
@@ -56,8 +56,7 @@ Init the plugin with options
 
 **Since:** 0.0.1
 
---------------------
-
+---
 
 ### connect()
 
@@ -69,8 +68,7 @@ Connect to fingerprint device
 
 **Since:** 0.0.1
 
---------------------
-
+---
 
 ### disconnect()
 
@@ -82,8 +80,7 @@ Disconnect from fingerprint device
 
 **Since:** 0.0.1
 
---------------------
-
+---
 
 ### capture(...)
 
@@ -101,8 +98,7 @@ Capture a fingerprint
 
 **Since:** 0.0.1
 
---------------------
-
+---
 
 ### match(...)
 
@@ -120,13 +116,12 @@ Capture a fingerprint and match with a given text FIR
 
 **Since:** 0.0.1
 
---------------------
-
+---
 
 ### addListener('onConnected', ...)
 
 ```typescript
-addListener(eventName: 'onConnected', listenerFunc: OnConnectedListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'onConnected', listenerFunc: OnConnectedListener) => Promise<PluginListenerHandle>
 ```
 
 Listen for connected event
@@ -136,17 +131,16 @@ Listen for connected event
 | **`eventName`**    | <code>'onConnected'</code>                                          |
 | **`listenerFunc`** | <code><a href="#onconnectedlistener">OnConnectedListener</a></code> |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 **Since:** 0.0.1
 
---------------------
-
+---
 
 ### addListener('onDisconnected', ...)
 
 ```typescript
-addListener(eventName: 'onDisconnected', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'onDisconnected', listenerFunc: () => void) => Promise<PluginListenerHandle>
 ```
 
 Listen for disconnected event
@@ -156,15 +150,13 @@ Listen for disconnected event
 | **`eventName`**    | <code>'onDisconnected'</code> |
 | **`listenerFunc`** | <code>() =&gt; void</code>    |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 **Since:** 0.0.1
 
---------------------
-
+---
 
 ### Interfaces
-
 
 #### InitOptions
 
@@ -172,7 +164,6 @@ Listen for disconnected event
 | -------------- | ------------------------------------------------------- | -------------- | ------------------- | ----- |
 | **`serial`**   | <code>string</code>                                     | Serial code    |                     | 0.0.1 |
 | **`security`** | <code><a href="#securitylevel">SecurityLevel</a></code> | Security level | <code>NORMAL</code> | 0.0.1 |
-
 
 #### CaptureOptions
 
@@ -182,14 +173,12 @@ Listen for disconnected event
 | **`imageFormat`**  | <code><a href="#imageformat">ImageFormat</a></code> | Fingerprint image format                                | <code>PNG</code>   | 0.0.1 |
 | **`imageQuality`** | <code>number</code>                                 | Fingerprint image quality (0-100) Only applied for JPEG | <code>50</code>    | 0.0.1 |
 
-
 #### CaptureResult
 
 | Prop          | Type                | Description                      | Since |
 | ------------- | ------------------- | -------------------------------- | ----- |
 | **`textFIR`** | <code>string</code> | Captured text FIR                | 0.0.1 |
 | **`image`**   | <code>string</code> | base64 encoded fingerprint image | 0.0.1 |
-
 
 #### MatchResult
 
@@ -199,13 +188,11 @@ Listen for disconnected event
 | **`textFIR`** | <code>string</code>  | Captured text FIR                        | 0.0.1 |
 | **`image`**   | <code>string</code>  | base64 encoded fingerprint image         | 0.0.1 |
 
-
 #### MatchOptions
 
 | Prop          | Type                | Description                                          | Since |
 | ------------- | ------------------- | ---------------------------------------------------- | ----- |
 | **`textFIR`** | <code>string</code> | A stored text FIR to match with captured fingerprint | 0.0.1 |
-
 
 #### PluginListenerHandle
 
@@ -213,29 +200,25 @@ Listen for disconnected event
 | ------------ | ----------------------------------------- |
 | **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
 
-
 #### OnConnectedListenerEvent
 
 | Prop                 | Type                | Description | Since |
 | -------------------- | ------------------- | ----------- | ----- |
 | **`openedDeviceID`** | <code>number</code> | Device ID   | 0.0.1 |
 
-
 ### Type Aliases
-
 
 #### ImageFormat
 
 <code>'PNG' | 'JPEG'</code>
 
-
 #### OnConnectedListener
 
-<code>(event: <a href="#onconnectedlistenerevent">OnConnectedListenerEvent</a>): void</code>
-
+<code>
+  (event: <a href="#onconnectedlistenerevent">OnConnectedListenerEvent</a>): void
+</code>
 
 ### Enums
-
 
 #### SecurityLevel
 
